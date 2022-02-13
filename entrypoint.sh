@@ -24,7 +24,7 @@ else
   FORCE=""
 fi
 
-echo OCI: ${OCI_ENABlED}
+echo OCI: ${OCI_ENABLED}
 echo EXAMPLE: ${SOME_INPUT}
 echo $REGISTRY_URL
 if [ "$OCI_ENABlED" == "TRUE" ] || [ "$OCI_ENABlED" == "true" ]; then
