@@ -5,7 +5,7 @@ branding:
   color: 'green'
   icon: 'upload-cloud'
 inputs:
-  some:
+  oci:
     description: 'API Token with read/write permissions to the helm registry'
     required: false
     default: ''
@@ -39,10 +39,6 @@ inputs:
     default: ''
   force:
     description: 'Whether or not to override existing chart with same version'
-    required: false
-    default: 'false'
-  oci:
-    description: 'If publishing to big cloud registries, utilizing OCI container spec for helm packages, set to true'
     required: false
     default: 'false'
 runs:
