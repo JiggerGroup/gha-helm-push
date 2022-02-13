@@ -24,7 +24,7 @@ else
   FORCE=""
 fi
 
-echo OCI: $OCI_ENABlED
+echo OCI: ${OCI_ENABlED}
 if [ "$OCI_ENABlED" == "TRUE" ] || [ "$OCI_ENABlED" == "true" ]; then
   export HELM_EXPERIMENTAL_OCI=1
   echo "OCI SPECIFIED, USING HELM OCI FEATURES"
