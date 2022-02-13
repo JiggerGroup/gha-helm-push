@@ -24,9 +24,7 @@ else
   FORCE=""
 fi
 
-echo ${INPUT_OCI}
-
-if [ "$INPUT_OCI" == "TRUE" ] || [ "$INPUT_OCI" == "true" ]; then
+if [ "${OCI_ENABLED}" == "TRUE" ] || [ "${OCI_ENABLED}" == "true" ]; then
   export HELM_EXPERIMENTAL_OCI=1
   echo "OCI SPECIFIED, USING HELM OCI FEATURES"
   REGISTRY=$(echo "${REGISTRY_URL}" | awk -F[/:] '{print $4}') # Get registry host from url

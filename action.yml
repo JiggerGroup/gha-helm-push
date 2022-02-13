@@ -5,9 +5,6 @@ branding:
   color: 'green'
   icon: 'upload-cloud'
 inputs:
-  oci:
-    description: 'API Token with read/write permissions to the helm registry'
-    required: true
   access-token:
     description: 'API Token with read/write permissions to the helm registry'
     required: false
@@ -40,17 +37,10 @@ inputs:
     description: 'Whether or not to override existing chart with same version'
     required: false
     default: 'false'
+  oci-enabled:
+    description: 'If publishing to big cloud registries, utilizing OCI container spec for helm packages, set to true'
+    required: false
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    CHART_FOLDER: ${{ inputs.chart-folder }}
-    SOME_INPUT: ${{ inputs.some }}
-    FORCE: ${{ inputs.force }}
-    REGISTRY_URL: ${{ inputs.registry-url }}
-    REGISTRY_ACCESS_TOKEN: ${{ inputs.access-token }}
-    REGISTRY_USERNAME: ${{ inputs.username }}
-    REGISTRY_PASSWORD: ${{ inputs.password }}
-    REGISTRY_VERSION: ${{ inputs.version }}
-    REGISTRY_APPVERSION: ${{ inputs.appVersion }}
-    OCI_ENABLED: ${{ inputs.oci }}
