@@ -5,7 +5,7 @@ branding:
   color: 'green'
   icon: 'upload-cloud'
 inputs:
-  example:
+  some:
     description: 'API Token with read/write permissions to the helm registry'
     required: false
     default: ''
@@ -50,7 +50,7 @@ runs:
   image: 'Dockerfile'
   env:
     CHART_FOLDER: ${{ inputs.chart-folder }}
-    EXAMPLE: ${{ inputs.example }}
+    SOME_INPUT: ${{ inputs.some }}
     FORCE: ${{ inputs.force }}
     REGISTRY_URL: ${{ inputs.registry-url }}
     REGISTRY_ACCESS_TOKEN: ${{ inputs.access-token }}
