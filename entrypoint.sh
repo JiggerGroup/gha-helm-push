@@ -42,7 +42,6 @@ if [ "${REGISTRY_APPVERSION}" ]; then
   REGISTRY_APPVERSION="--app-version ${REGISTRY_APPVERSION}"
 fi
 
-REGISTRY_HOSTNAME=$(echo "${REGISTRY_URL}" | awk -F[/:] '{print $4}')
 helm registry login ${REGISTRY_HOSTNAME} ${REGISTRY_USERNAME} ${REGISTRY_PASSWORD}
 
 cd ${CHART_FOLDER}
