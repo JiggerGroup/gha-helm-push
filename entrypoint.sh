@@ -11,22 +11,15 @@ if [ -z "${REGISTRY_URL}" ]; then
   exit 1
 fi
 
-if [ -z "${REGISTRY_ACCESS_TOKEN}" ]; then
-  if [ -z "${REGISTRY_USERNAME}" ] || [ -z "${REGISTRY_PASSWORD}" ]; then
-    echo "Credentials are required, but none defined."
-    exit 1
-  fi
+if [ -z "${REGISTRY_USERNAME}" ] || [ -z "${REGISTRY_PASSWORD}" ]; then
+  echo "Credentials are required, but none defined."
+  exit 1
 fi
 
 if [ "${FORCE}" == "1" ] || [ "${FORCE}" == "True" ] || [ "${FORCE}" == "TRUE" ] || [ "${FORCE}" == "true" ]; then
   FORCE="-f"
 else
   FORCE=""
-fi
-
-if [ "${REGISTRY_ACCESS_TOKEN}" ]; then
-  echo "Access token is defined, using bearer auth."
-  REGISTRY_ACCESS_TOKEN="--access-token ${REGISTRY_ACCESS_TOKEN}"
 fi
 
 if [ "${REGISTRY_USERNAME}" ]; then
@@ -48,6 +41,9 @@ if [ "${REGISTRY_APPVERSION}" ]; then
   echo "App version is defined, using as parameter."
   REGISTRY_APPVERSION="--app-version ${REGISTRY_APPVERSION}"
 fi
+
+REGISTRY_HOSTNAME=$(echo "${REGISTRY_URL}" | awk -F[/:] '{print $4}')
+helm registry login ${REGISTRY_HOSTNAME} -u ${REGISTRY_USERNAME} -p ${REGISTRY_PASSWORD}
 
 cd ${CHART_FOLDER}
 helm lint .
